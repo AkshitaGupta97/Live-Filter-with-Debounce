@@ -8,7 +8,7 @@ const getUserData = async() => {
     try{
         const res = await fetch('https://api.github.com/users');
         const data = await res.json();
-        console.log(data);
+      //  console.log(data);
 
         if(data){ // after fetching data i want to remove 'loading..'
             users.innerHTML = '';
@@ -18,7 +18,6 @@ const getUserData = async() => {
             const li = document.createElement('li');
 
             userArray.push(li);
-
 
             li.insertAdjacentHTML('afterbegin',
                 `
@@ -44,15 +43,17 @@ const getUserData = async() => {
 userName.addEventListener('input', (event) => {
     const val = event.target.value;
 
-    console.log(val);
+  //  console.log(val);
     
-    userArray.map((currEle) => {
-        console.log(currEle.innerText.toLowerCase().includes(val));  // it means yaha wahi log karwaoo jo ham type kiye hai
+    userArray.filter((currEle) => {
+        // it means yaha wahi log karwaoo jo ham type kiye hai
+        currEle.innerText.toLowerCase().includes(val.toLowerCase()) ? 
+        currEle.classList.remove('hide') :  // remove hide means => i want to display all names
+        currEle.classList.add('hide');
         
     })
     
 })
-
 
 getUserData();
 
