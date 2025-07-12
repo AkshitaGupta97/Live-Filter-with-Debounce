@@ -40,7 +40,7 @@ const getUserData = async() => {
     }
 }
 
-userName.addEventListener('input', (event) => {
+/*userName.addEventListener('input', (event) => {
     const val = event.target.value;
 
   //  console.log(val);
@@ -53,6 +53,35 @@ userName.addEventListener('input', (event) => {
         
     })
     
+})*/
+
+// instead of it now i am using Debounce, because jab bhi hum name type kar rahe the to oo single letter me search karta hai, which is wrong practice
+// jab last letter of word complete ho jaega tab search akrte hai
+
+const debounce = (func, timeout = 500) => {
+    let timer;
+    return (...args) => {  // using rest parameter to get argumnets
+        clearTimeout(timer);
+       timer =  setTimeout(() => {
+            func.apply(this, args)
+        }, timeout);
+    }
+}
+
+const getUser = (val) => {
+    userArray.filter((currEle) => {
+        // it means yaha wahi log karwaoo jo ham type kiye hai
+        currEle.innerText.toLowerCase().includes(val.toLowerCase()) ? 
+        currEle.classList.remove('hide') :  // remove hide means => i want to display all names
+        currEle.classList.add('hide');
+        
+    })
+}
+
+const debounceGetData = debounce(getUser, 500)
+
+userName.addEventListener("keyup", (event) => {
+    debounceGetData(event.target.value)
 })
 
 getUserData();
