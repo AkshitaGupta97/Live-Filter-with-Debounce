@@ -122,3 +122,12 @@ li {
 .hide {
     display: none;
 }
+
+/*          MEDIA     QUERY         */
+
+@media (width <= 500) {
+    .user-data {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

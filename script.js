@@ -62,8 +62,8 @@ const debounce = (func, timeout = 500) => {
     let timer;
     return (...args) => {  // using rest parameter to get argumnets
         clearTimeout(timer);
-       timer =  setTimeout(() => {
-            func.apply(this, args)
+        timer =  setTimeout(() => {
+            func(...args)
         }, timeout);
     }
 }
