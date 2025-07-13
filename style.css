@@ -125,9 +125,21 @@ li {
 
 /*          MEDIA     QUERY         */
 
-@media (width <= 500) {
+@media (width <= 500px) {
     .user-data {
         display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
     }
+    input::placeholder {
+        font-weight: 400;
+        font-size: small;
+    }
+}
+@media (width <= 450px) {
+    .user-data a {
+        font-size: 15px;
+        
+    }
+    
 }
